@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Discoverfy</title>
+</head>
+<body>
+    <nav >
+        <div class="discoverfy">Discoverfy</div>
+        <ul>
+            <li class="list-item active"><a href="#" class="link">Recently Played Tracks</a></li>
+            <li class="list-item"><a href="top-tracks.html" class="link">Top Tracks</a></li>
+        </ul>
+    </nav>
+
+    <section class="songs">
+        <div class="songs-head">
+            <h3 class="list-title" id="users-songs-title">Your Recently Played Tracks</h3>   
+        </div>
+
+        <div class="list">
+            <div class="song-list-item">
+                <div class="song-details">
+                    <img class="album-img" id="recent-tracks-img" src="https://yt3.ggpht.com/ytc/AAUvwng9i-_mtPyX12pclYOOHahF4sUWHIqi58OrwpGh=s900-c-k-c0x00ffffff-no-rj" alt="album art">
+                    <p class="song-title" id="recent-track-title">Someone You Loved</p>
+                    <p class="artists-name" id="recent-artists">Lewis Capaldi</p>
+                </div>    
+                <div class="btn-right">
+                    <button class="recommendations-btn">Get recommendations</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <template id="recent-tracks-template">
+        <div class="song-list-item">
+            <div class="song-details">
+                <img class="album-img" id="recent-tracks-img" src="https://yt3.ggpht.com/ytc/AAUvwng9i-_mtPyX12pclYOOHahF4sUWHIqi58OrwpGh=s900-c-k-c0x00ffffff-no-rj" alt="album art">
+                <p class="song-title" id="recent-track-title">Someone You Loved</p>
+                <p class="artists-name" id="recent-artists">Lewis Capaldi</p>
+            </div>    
+            <div class="btn-right">
+                <button class="recommendations-btn">Get recommendations</button>
+            </div>
+        </div>
+    </template>
+</body>
+</html>

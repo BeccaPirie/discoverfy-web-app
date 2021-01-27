@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Signika:wght@400;500;600&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Signika', sans-serif;
+}
+
+nav {
+    color: black;
+    padding: 35px 20px;
+    font-size: 20px;
+    background-image: linear-gradient(to bottom right, #d4145a, #fbb03b);
+}
+
+.discoverfy {
+    text-align: center;
+    width: 100%;
+    font-weight: 600;
+    font-size: 25px;
+}
+
+nav ul {
+    text-align: center;
+    list-style: none;
+    margin: 0;
+    margin-top: 3px;
+}
+
+.list-item a {
+    text-decoration: none;
+    color: black;
+}
+
+.list-item:hover {
+    text-decoration: underline;
+}
+
+.active{
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+#description {
+    margin: 0 40px;
+    text-align: center;
+}
+
+.songs {
+    width: 100%;
+    height: fit-content;
+    margin: 0 auto;
+    animation-name: fade-in;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.songs-head {
+    height: 90px;
+}
+
+.list-title {
+    width: 90%;
+    font-size: 25px;
+    color: #4b4b4b;
+    float: left;
+    margin-left: 20px;
+    margin-top: 30px;
+}
+
+#recommendations-title {
+    width: 200px;
+}
+
+#button {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px;
+    padding: 40px 0;
+}
+
+#create-playlist {
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #d41444;
+    background-color: white;
+    color: #d41444;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+button:active {
+    box-shadow: 2px 2px 6px 2px #e2e2e2;
+}
+
+.list {
+    height: fit-content;
+    padding-bottom: 15px;
+    box-shadow: 10px 10px 60px 20px #f1f1f1;
+    clear: both;
+}
+
+.song-list-item {
+    padding: 20px;
+    clear: both;
+    padding-bottom: 20px;
+}
+
+.song-details {
+    width: 220px;
+    float: left;
+}
+
+.album-img {
+    margin-right: 10px;
+    float: left;
+    width: 65px;
+    height: 65px;
+}
+
+.song-title {
+    margin: 0px;
+    margin-bottom: -15px;
+}
+
+.btn-right {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 3px;
+}
+
+.recommendations-btn {
+    display: block;
+    width: 70px;
+    border: 2px solid #e46804;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: white;
+}
+
+.audio-btn {
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    padding: 9px 11px 9px 13px;
+    color: white;
+    background-image: linear-gradient(#e05e5e, #f3a245);
+    margin-top: 5px;
+    font-size: 16px;
+}
+
+@keyframes fade-in {
+    0% {opacity: 0}
+    100% {opacity: 1;}
+}
+
+@media (min-width: 700px) {
+    nav {
+        padding: 35px 50px;
+    }
+
+    .discoverfy {
+        width: fit-content;
+        float: left;
+        text-align: left;
+    }
+
+    nav ul {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .list-item {
+        margin-left: 20px;
+        width: fit-content;
+    }
+
+    .songs {
+        width: 650px;
+        margin: 30px auto;
+        box-shadow: 10px 10px 30px 20px #f1f1f1;
+    }
+
+    #recommendations-title {
+        width: fit-content;
+    }
+
+    #button {
+        padding: 20px 0;
+    }
+
+    .list {
+        padding-bottom: 25px;
+    }
+
+    .song-details {
+        width: 350px;
+    }
+
+    .btn-right {
+        margin-top: 7px;
+    }
+
+    .recommendations-btn {
+        width: fit-content;
+    }
+}
+
+@media (min-width: 900px) {
+    .songs {
+        width: 850px;
+    }
+}
