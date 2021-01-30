@@ -58,10 +58,11 @@ nav {
 }
 
 .discoverfy {
-    text-align: center;
-    width: 100%;
     font-weight: 600;
     font-size: 25px;
+    width: fit-content;
+    float: left;
+    text-align: left;
 }
 
 nav ul {
@@ -70,6 +71,15 @@ nav ul {
     margin: 0;
     margin-top: 3px;
     margin-left: -40px;
+}
+
+.top {
+    margin-top: 10px;
+}
+
+#menu-icon {
+    display: flex;
+    justify-content: flex-end;
 }
 
 a {
@@ -81,15 +91,19 @@ a {
     text-decoration: underline;
 }
 
-.active{
+.active {
     text-decoration: underline;
     font-weight: 500;
 }
 
-#description {
+.hide {
+    display: none;
+}
+
+/* #description {
     margin: 0 40px;
     text-align: center;
-}
+} */
 
 .songs {
     width: 100%;
@@ -200,28 +214,31 @@ button:not(#login-btn):active {
 
 @keyframes fade-in {
     0% {opacity: 0}
-    100% {opacity: 1;}
+    100% {opacity: 1}
 }
 
 @media (min-width: 700px) {
-    nav {
-        padding: 35px 50px;
-    }
-
-    .discoverfy {
-        width: fit-content;
-        float: left;
-        text-align: left;
-    }
 
     nav ul {
         display: flex;
         justify-content: flex-end;
     }
 
+    .top {
+        margin-top: 0;
+    }
+
     .list-item {
         margin-left: 20px;
         width: fit-content;
+    }
+
+    #menu-icon {
+        display: none;
+    }
+    
+    .hide {
+        display: flex;
     }
 
     .songs {

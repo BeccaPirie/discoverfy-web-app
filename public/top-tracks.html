@@ -4,15 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="./script.js" defer></script>
     <title>Discoverfy</title>
 </head>
 <body>
     <nav >
         <div class="discoverfy">Discoverfy</div>
-        <ul>
-            <li class="list-item"><a href="./recent-tracks.html" class="link">Recently Played Tracks</a></li>
-            <li class="list-item active"><a href="./top-tracks.html" class="link">Top Tracks</a></li>
-        </ul>
+            <ul>
+                <li id="menu-icon"><a href="#"><i class="fa fa-bars"></i></a></li>
+                <li class="list-item top hide"><a href="./recent-tracks.html">Recently Played Tracks</a></li>
+                <li class="list-item active hide"><a href="./top-tracks.html">Top Tracks</a></li>
+            </ul>
     </nav>
 
     <section class="songs">
