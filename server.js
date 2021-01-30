@@ -1,10 +1,15 @@
-var express = require('express');
-var app = express()
-var SpotifyWebApi = require('spotify-web-api-node')
+const express = require('express');
+const app = express()
+const SpotifyWebApi = require('spotify-web-api-node')
 
-var scopes = ['user-read-private', 'user-read-email']
+const scopes = [
+  'user-read-private',
+  'user-read-email',
+  'user-read-recently-played',
+  'user-top-read'
+]
 
-var spotifyApi = new SpotifyWebApi({
+const spotifyApi = new SpotifyWebApi({
     redirectUri: 'http://localhost:8888/callback',
     clientId: '1d72037226ee42ecb9d96acb33beb4f5',
     clientSecret: 'fffc78eb81cc440cb93b9c1bcf06c149'
@@ -12,15 +17,11 @@ var spotifyApi = new SpotifyWebApi({
 
 app.use(express.static('public'))
 
-app.get('/', function(req, res) {
-    res.send('/')
-})
-
-app.get('/login', function(req, res) {
+app.get('/login', (req, res) => {
     res.redirect(spotifyApi.createAuthorizeURL(scopes))
 })
 
-app.get('/callback', function(req, res) {
+app.get('/callback', (req, res) => {
     const error = req.query.error;
     const code = req.query.code;
     const state = req.query.state;
@@ -40,15 +41,7 @@ app.get('/callback', function(req, res) {
   
         spotifyApi.setAccessToken(access_token);
         spotifyApi.setRefreshToken(refresh_token);
-  
-        console.log('access_token:', access_token);
-        console.log('refresh_token:', refresh_token);
-  
-        console.log(
-          `Sucessfully retreived access token. Expires in ${expires_in} s.`
-        );
-        res.redirect('recent-tracks.html');
-  
+
         setInterval(async () => {
           const data = await spotifyApi.refreshAccessToken();
           const access_token = data.body['access_token'];
@@ -58,15 +51,45 @@ app.get('/callback', function(req, res) {
           spotifyApi.setAccessToken(access_token);
         }, expires_in / 2 * 1000);
 
-        return spotifyApi.getMe()
+        res.redirect('/recenttracks');
       })
       .catch(error => {
         console.error('Error getting Tokens:', error);
         res.send(`Error getting Tokens: ${error}`);
-      })  
-      .then(data => {
-        console.log(data.body['display_name'])
       })
 })
+
+app.get('/recenttracks', (req, res) => {
+  spotifyApi.getMyRecentlyPlayedTracks({
+  limit:20
+  }).then(data => {
+  res.send(data.body.items.forEach(item => console.log(item.track.name)))
+  })
+  .catch (error => console.log(error))
+})
+
+app.get('/toptracks', (req, res) => {
+  spotifyApi.getMyTopTracks({
+    time_range:'short_term',
+    limit: 20
+  }).then(data => {
+    res.send(data.body.items.forEach(item => console.log(item.name)))
+  })
+  .catch(error => console.log(error))
+})
+// TODO top tracks medium_term and long_term
+
+app.get('/recommendations', (req, res) => {
+  spotifyApi.getRecommendations({
+    limit:20,
+    seed_tracks:'0c6xIDDpzE81m2q797ordA' // will come from the song the user clicks
+  }).then(data => {
+    res.send(data.body.tracks.forEach(track => console.log(track.name)))
+  })
+  .catch(error => console.log(error))
+})
+
+// TODO createplaylist
+// TODO addTracksToPlaylkist
 
 app.listen(8888)
