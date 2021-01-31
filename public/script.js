@@ -1,9 +1,6 @@
 const menuIcon = document.querySelector('#menu-icon')
 const listItems = document.querySelectorAll('.list-item')
-
+// add event listener to the navigation menu
 menuIcon.addEventListener("click", () => {
-    console.log("menu clicked")
-    listItems.forEach(item => {
-        item.classList.toggle('hide')
-    })
+    listItems.forEach(item => item.classList.toggle('hide'))
 })

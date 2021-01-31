@@ -13,8 +13,8 @@
         <div class="discoverfy">Discoverfy</div>
             <ul>
                 <li id="menu-icon"><a href="#"><i class="fa fa-bars"></i></a></li>
-                <li class="list-item top hide"><a href="./recent-tracks.html">Recently Played Tracks</a></li>
-                <li class="list-item hide"><a href="./top-tracks.html">Top Tracks</a></li>
+                <li class="list-item top hide"><a href="/recenttracks">Recently Played Tracks</a></li>
+                <li class="list-item hide"><a href="/toptracks">Top Tracks</a></li>
             </ul>
     </nav>
 
@@ -26,31 +26,19 @@
             </div>
         </div>
         <div class="list">
+            <% songs.forEach(song => { %>
             <div class="song-list-item">
                 <div class="song-details">
                     <img class="album-img"id="recommendation-img" src="https://yt3.ggpht.com/ytc/AAUvwng9i-_mtPyX12pclYOOHahF4sUWHIqi58OrwpGh=s900-c-k-c0x00ffffff-no-rj" alt="album art">
-                    <p class="song-title" id="recommendation-track-title">Someone You Loved</p>
-                    <p class="artists-name" id="recommendation-artists">Lewis Capaldi</p>
+                    <p class="song-title" id="recommendation-track-title"><%= song.name %></p>
+                    <p class="artists-name" id="recommendation-artists"><%= song.artists %></p>
                 </div>    
                 <div class="btn-right">
                     <button class="audio-btn"><i class="fa fa-play"></i></button>
                 </div>
-            </div>                    
+            </div>
+            <% }) %>                
         </div>
     </section>
-
-    <template id="recommendations-template">
-        <div class="song-list-item">
-            <div class="song-details">
-                <img class="album-img"id="recommendation-img" src="https://yt3.ggpht.com/ytc/AAUvwng9i-_mtPyX12pclYOOHahF4sUWHIqi58OrwpGh=s900-c-k-c0x00ffffff-no-rj" alt="album art">
-                <p class="song-title" id="recommendation-track-title">Someone You Loved</p>
-                <p class="artists-name" id="recommendation-artists">Lewis Capaldi</p>
-            </div>    
-            <div class="btn-right">
-                <button class="audio-btn"><i class="fa fa-play"></i></button>
-            </div>
-        </div>
-    </template>
-
 </body>
 </html>

@@ -17,6 +17,12 @@ const spotifyApi = new SpotifyWebApi({
 
 app.use(express.static('public'))
 
+app.set('view engine', 'ejs')
+
+app.get('/', (req, res) => {
+  res.render('pages/index')
+})
+
 app.get('/login', (req, res) => {
     res.redirect(spotifyApi.createAuthorizeURL(scopes))
 })
@@ -64,15 +70,24 @@ app.get('/recenttracks', (req, res) => {
   spotifyApi.getMyRecentlyPlayedTracks({
   limit:20
   }).then(data => {
-    const json = []
+    const songs = []
     data.body.items.forEach(item => {
-      json.push({
-        id: item.track.id,
-        name: item.track.name,
-        artists: item.track.artists
+      const id = item.track.id
+      const name = item.track.name
+      let artists = ""
+      item.track.artists.forEach(artist => {
+        artist += `${artist.name}, `
+      })
+      artists = artists.substring(0, artists.length-2)
+      songs.push({
+        id: id,
+        name: name,
+        artists: artists
       })
     })
-    res.send(JSON.stringify(json))
+    res.render('pages/recent-tracks', {
+      songs: songs
+    })
   })
   .catch (error => console.log(error))
 })
@@ -82,16 +97,26 @@ app.get('/toptracks', (req, res) => {
     time_range:'short_term',
     limit: 20
   }).then(data => {
-    const json = []
+    const songs = []
     data.body.items.forEach(item => {
-      json.push({
-        id: item.id,
-        name: item.name,
-        artists: item.artists,
-        image: item.album.images
+      const id = item.id
+      const name = item.name
+      let artists = ""
+      item.artists.forEach(artist => {
+        artists += `${artist.name}, `
+      })
+      artists = artists.substring(0, artists.length-2)
+      const image = item.album.images[1].url
+      songs.push({
+        id: id,
+        name: name,
+        artists: artists,
+        image: image
       })
     })
-    res.send(JSON.stringify(json))
+    res.render('pages/top-tracks', {
+      songs: songs
+    })
   })
   .catch(error => console.log(error))
 })
@@ -102,16 +127,26 @@ app.get('/recommendations', (req, res) => {
     limit:20,
     seed_tracks:'0c6xIDDpzE81m2q797ordA' // will come from the song the user clicks
   }).then(data => {
-    const json = []
+    const songs = []
     data.body.tracks.forEach(track => {
-      json.push({
-        id: track.id,
-        name: track.name,
-        artists: track.artists,
+      const id = track.id
+      const name = track.name
+      let artists = ""
+      track.artists.forEach(artist => {
+        artists += `${artist.name}, `
+      })
+      artists = artists.substring(0, artists.length-2)
+
+      songs.push({
+        id: id,
+        name: name,
+        artists: artists,
         preview: track.preview_url
       })
     })
-    res.send(JSON.stringify(json))
+    res.render('pages/recommendations', {
+      songs: songs
+    })
   })
   .catch(error => console.log(error))
 })
