@@ -41,13 +41,14 @@ app.get('/callback', (req, res) => {
   
         spotifyApi.setAccessToken(access_token);
         spotifyApi.setRefreshToken(refresh_token);
+        console.log('access_token:', access_token)
+        console.log('refresh_token:', refresh_token)
 
         setInterval(async () => {
           const data = await spotifyApi.refreshAccessToken();
           const access_token = data.body['access_token'];
   
-          console.log('The access token has been refreshed!');
-          console.log('access_token:', access_token);
+          console.log('new access_token:', access_token);
           spotifyApi.setAccessToken(access_token);
         }, expires_in / 2 * 1000);
 
@@ -63,7 +64,15 @@ app.get('/recenttracks', (req, res) => {
   spotifyApi.getMyRecentlyPlayedTracks({
   limit:20
   }).then(data => {
-  res.send(data.body.items.forEach(item => console.log(item.track.name)))
+    const json = []
+    data.body.items.forEach(item => {
+      json.push({
+        id: item.track.id,
+        name: item.track.name,
+        artists: item.track.artists
+      })
+    })
+    res.send(JSON.stringify(json))
   })
   .catch (error => console.log(error))
 })
@@ -73,7 +82,16 @@ app.get('/toptracks', (req, res) => {
     time_range:'short_term',
     limit: 20
   }).then(data => {
-    res.send(data.body.items.forEach(item => console.log(item.name)))
+    const json = []
+    data.body.items.forEach(item => {
+      json.push({
+        id: item.id,
+        name: item.name,
+        artists: item.artists,
+        image: item.album.images
+      })
+    })
+    res.send(JSON.stringify(json))
   })
   .catch(error => console.log(error))
 })
@@ -84,12 +102,21 @@ app.get('/recommendations', (req, res) => {
     limit:20,
     seed_tracks:'0c6xIDDpzE81m2q797ordA' // will come from the song the user clicks
   }).then(data => {
-    res.send(data.body.tracks.forEach(track => console.log(track.name)))
+    const json = []
+    data.body.tracks.forEach(track => {
+      json.push({
+        id: track.id,
+        name: track.name,
+        artists: track.artists,
+        preview: track.preview_url
+      })
+    })
+    res.send(JSON.stringify(json))
   })
   .catch(error => console.log(error))
 })
 
-// TODO createplaylist
-// TODO addTracksToPlaylkist
+// TODO createPlaylist
+// TODO addTracksToPlaylist
 
 app.listen(8888)
