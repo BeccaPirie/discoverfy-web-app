@@ -136,12 +136,12 @@ app.get('/recommendations', (req, res) => {
         artists += `${artist.name}, `
       })
       artists = artists.substring(0, artists.length-2)
-
+      let preview = track.preview_url
       songs.push({
         id: id,
         name: name,
         artists: artists,
-        preview: track.preview_url
+        preview: preview
       })
     })
     res.render('pages/recommendations', {
