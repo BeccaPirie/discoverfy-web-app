@@ -76,7 +76,7 @@ app.get('/recenttracks', (req, res) => {
       const name = item.track.name
       let artists = ""
       item.track.artists.forEach(artist => {
-        artist += `${artist.name}, `
+        artists += `${artist.name}, `
       })
       artists = artists.substring(0, artists.length-2)
       songs.push({
@@ -122,10 +122,11 @@ app.get('/toptracks', (req, res) => {
 })
 // TODO top tracks medium_term and long_term
 
-app.get('/recommendations', (req, res) => {
+app.get('/recommendations/p', (req, res) => {
+  const songId = req.query.id
   spotifyApi.getRecommendations({
     limit:20,
-    seed_tracks:'0c6xIDDpzE81m2q797ordA' // will come from the song the user clicks
+    seed_tracks:songId // will come from the song the user clicks
   }).then(data => {
     const songs = []
     data.body.tracks.forEach(track => {
@@ -136,7 +137,7 @@ app.get('/recommendations', (req, res) => {
         artists += `${artist.name}, `
       })
       artists = artists.substring(0, artists.length-2)
-      let preview = track.preview_url
+      const preview = track.preview_url
       songs.push({
         id: id,
         name: name,
