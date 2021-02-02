@@ -13,7 +13,8 @@ export default function playAudio() {
         }
         
         // add event listener to buttons with preview url
-        button.addEventListener("click", () => {
+        button.addEventListener("click", e => {
+            e.stopPropagation()
             const parent = button.closest('.btn-right')
             const selectedAudio = parent.children[1]
             const playBtn = button.firstChild

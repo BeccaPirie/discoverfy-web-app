@@ -6,7 +6,8 @@ const scopes = [
   'user-read-private',
   'user-read-email',
   'user-read-recently-played',
-  'user-top-read'
+  'user-top-read',
+  'playlist-modify-public'
 ]
 
 const spotifyApi = new SpotifyWebApi({
@@ -126,7 +127,7 @@ app.get('/recommendations/p', (req, res) => {
   const songId = req.query.id
   spotifyApi.getRecommendations({
     limit:20,
-    seed_tracks:songId // will come from the song the user clicks
+    seed_tracks: songId
   }).then(data => {
     const songs = []
     data.body.tracks.forEach(track => {
@@ -138,11 +139,13 @@ app.get('/recommendations/p', (req, res) => {
       })
       artists = artists.substring(0, artists.length-2)
       const preview = track.preview_url
+      const uri = track.uri
       songs.push({
         id: id,
         name: name,
         artists: artists,
-        preview: preview
+        preview: preview,
+        uri: uri
       })
     })
     res.render('pages/recommendations', {
@@ -152,6 +155,8 @@ app.get('/recommendations/p', (req, res) => {
   .catch(error => console.log(error))
 })
 
+// TODO getTrack
+// TODO get album art
 // TODO createPlaylist
 // TODO addTracksToPlaylist
 
