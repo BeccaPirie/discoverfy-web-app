@@ -9,14 +9,7 @@
     <title>Discoverfy</title>
 </head>
 <body>
-    <nav>
-        <div class="discoverfy">Discoverfy</div>
-            <ul>
-                <li id="menu-icon"><a href="#"><i class="fa fa-bars"></i></a></li>
-                <li class="list-item top hide"><a href="/recenttracks">Recently Played Tracks</a></li>
-                <li class="list-item hide"><a href="/toptracks">Top Tracks</a></li>
-            </ul>
-    </nav>
+    <%- include('../partials/header') %>
 
     <section class="songs">
         <div class="songs-head">
@@ -27,7 +20,7 @@
         </div>
         <div class="list">
             <% songs.forEach(song => { %>
-            <div class="song-list-item" data-uri="<%= song.uri %>">
+            <div class="song-list-item recommend-item" data-uri="<%= song.uri %>">
                 <div class="song-details">
                     <img class="album-img"id="recommendation-img" src="" alt="album art">
                     <p class="song-title" id="recommendation-track-title"><%= song.name %></p>

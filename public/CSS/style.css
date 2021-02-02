@@ -91,19 +91,9 @@ a {
     text-decoration: underline;
 }
 
-.active {
-    text-decoration: underline;
-    font-weight: 500;
-}
-
 .hide {
     display: none;
 }
-
-/* #description {
-    margin: 0 40px;
-    text-align: center;
-} */
 
 .songs {
     width: 100%;
@@ -155,6 +145,7 @@ button:hover {
 button:not(#login-btn):active {
     box-shadow: 2px 2px 6px 2px #e2e2e2;
 }
+
 .list {
     height: fit-content;
     padding-bottom: 15px;
@@ -168,8 +159,13 @@ button:not(#login-btn):active {
     padding-bottom: 20px;
 }
 
+.recommend-item:hover {
+    cursor: pointer;
+    background-color: rgb(240, 239, 239);
+}
+
 .song-details {
-    width: 220px;
+    width: 200px;
     float: left;
 }
 
@@ -226,6 +222,12 @@ button:not(#login-btn):active {
     100% {opacity: 1}
 }
 
+@media (min-width: 350px) {
+    .song-details {
+        width: 270px;
+    }
+}
+
 @media (min-width: 700px) {
 
     nav ul {
@@ -269,7 +271,7 @@ button:not(#login-btn):active {
     }
 
     .song-details {
-        width: 350px;
+        width: 500px;
     }
 
     .btn-right {
@@ -283,6 +285,10 @@ button:not(#login-btn):active {
 
 @media (min-width: 900px) {
     .songs {
-        width: 850px;
+        width: 950px;
+    }
+
+    .song-details {
+        width: 600px;
     }
 }
