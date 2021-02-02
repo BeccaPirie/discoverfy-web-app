@@ -125,6 +125,7 @@ app.get('/toptracks', (req, res) => {
 
 app.get('/recommendations/p', (req, res) => {
   const songId = req.query.id
+  const songName = req.query.name
   spotifyApi.getRecommendations({
     limit:20,
     seed_tracks: songId
@@ -149,11 +150,34 @@ app.get('/recommendations/p', (req, res) => {
       })
     })
     res.render('pages/recommendations', {
-      songs: songs
+      songs: songs,
+      name: songName
     })
   })
   .catch(error => console.log(error))
 })
+
+// *******************************************************
+
+app.get('/createplaylist', (req, res) => {
+  spotifyApi.createPlaylist('Discoverfy', {
+    'description': 'test',
+    'public': true
+  }).then(data => {
+    console.log('created playlist')
+    res.redirect('/addtoplaylist')
+  }).catch(error => console.log(error))
+})
+
+app.get('/addtoplaylist', (req, res) => {
+  spotifyApi.addTracksToPlaylist('playlist id', 'list of uris')
+  .then(data => {
+    console.log("tracks added to playlist")
+    res.render('pages/recommendations')
+  }).catch(error => console.log(error))
+})
+
+// ********************************************************
 
 // TODO getTrack
 // TODO get album art

@@ -118,7 +118,8 @@ a {
 }
 
 #recommendations-title {
-    width: 200px;
+    width: 150px;
+    word-wrap: break-word;
 }
 
 #button {
@@ -228,6 +229,12 @@ button:not(#login-btn):active {
     }
 }
 
+@media (min-width: 450px) {
+    #recommendations-title {
+        width: 350px;
+    }
+}
+
 @media (min-width: 700px) {
 
     nav ul {
@@ -259,7 +266,7 @@ button:not(#login-btn):active {
     }
 
     #recommendations-title {
-        width: fit-content;
+        width: 400px;
     }
 
     #button {
@@ -289,6 +296,10 @@ button:not(#login-btn):active {
     }
 
     .song-details {
+        width: 600px;
+    }
+
+    #recommendations-title {
         width: 600px;
     }
 }
