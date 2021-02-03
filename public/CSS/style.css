@@ -104,10 +104,6 @@ a {
     animation-fill-mode: forwards;
 }
 
-.songs-head {
-    height: 90px;
-}
-
 .list-title {
     width: 90%;
     font-size: 25px;
@@ -120,6 +116,24 @@ a {
 #recommendations-title {
     width: 150px;
     word-wrap: break-word;
+    float: left;
+}
+
+#buttons {
+    margin-left: 15px;
+    margin-bottom: 15px;
+    height: fit-content;
+    width: fit-content;
+}
+
+.btn {
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #d41444;
+    background-color: white;
+    color: #d41444;
+    font-weight: 600;
+    margin-left: 3px;
 }
 
 #button {
@@ -225,13 +239,24 @@ button:not(#login-btn):active {
 
 @media (min-width: 350px) {
     .song-details {
-        width: 270px;
+        width: 250px;
     }
+
 }
 
 @media (min-width: 450px) {
+    .list-title {
+        width: 360px;
+    }
+
     #recommendations-title {
         width: 350px;
+    }
+}
+
+@media (min-width: 550px) {
+    .song-details {
+        width: 400px;
     }
 }
 
@@ -265,6 +290,12 @@ button:not(#login-btn):active {
         box-shadow: 10px 10px 30px 20px #f1f1f1;
     }
 
+    #buttons {
+        display: flex;
+        justify-content: flex-end;
+        padding-top: 25px;
+    }
+
     #recommendations-title {
         width: 400px;
     }
@@ -292,11 +323,15 @@ button:not(#login-btn):active {
 
 @media (min-width: 900px) {
     .songs {
-        width: 950px;
+        width: 850px;
     }
 
     .song-details {
         width: 600px;
+    }
+
+    .list-title {
+        width: 560px;
     }
 
     #recommendations-title {

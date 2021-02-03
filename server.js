@@ -69,7 +69,7 @@ app.get('/callback', (req, res) => {
 
 app.get('/recenttracks', (req, res) => {
   spotifyApi.getMyRecentlyPlayedTracks({
-  limit:20
+  limit: 50
   }).then(data => {
     const songs = []
     data.body.items.forEach(item => {
@@ -93,10 +93,11 @@ app.get('/recenttracks', (req, res) => {
   .catch (error => console.log(error))
 })
 
-app.get('/toptracks', (req, res) => {
+app.get('/toptracks/p', (req, res) => {
+  const timeRange = req.query.time_range
   spotifyApi.getMyTopTracks({
-    time_range:'short_term',
-    limit: 20
+    time_range: timeRange,
+    limit: 50
   }).then(data => {
     const songs = []
     data.body.items.forEach(item => {
@@ -119,13 +120,12 @@ app.get('/toptracks', (req, res) => {
   })
   .catch(error => console.log(error))
 })
-// TODO top tracks medium_term and long_term
 
 app.get('/recommendations/p', (req, res) => {
   const songId = req.query.id
   const songName = req.query.name
   spotifyApi.getRecommendations({
-    limit:20,
+    limit:50,
     seed_tracks: songId
   }).then(data => {
     const songs = []

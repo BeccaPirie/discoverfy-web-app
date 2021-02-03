@@ -14,6 +14,11 @@
     <section class="songs">
         <div class="songs-head">
             <h3 class="list-title" id="users-songs-title">Your Top Tracks</h3>   
+            <div id="buttons">
+                <a href="/toptracks/p?time_range=short_term"><button class="btn" id="one-month">One Month</button></a>
+                <a href="/toptracks/p?time_range=medium_term"><button class="btn" id="six-months">Six Months</button></a>
+                <a href="/toptracks/p?time_range=long_term"><button class="btn" id="all-time">All Time</button></a>
+            </div>
         </div>
 
         <%- include('../partials/list-items') %>
