@@ -107,12 +107,10 @@ app.get('/toptracks', (req, res) => {
         artists += `${artist.name}, `
       })
       artists = artists.substring(0, artists.length-2)
-      const image = item.album.images[1].url
       songs.push({
         id: id,
         name: name,
-        artists: artists,
-        image: image
+        artists: artists
       })
     })
     res.render('pages/top-tracks', {
@@ -179,6 +177,7 @@ app.get('/addtoplaylist', (req, res) => {
 
 // ********************************************************
 
+// TODO use artists id for recommendations
 // TODO getTrack
 // TODO get album art
 // TODO createPlaylist
