@@ -7,7 +7,8 @@ const scopes = [
   'user-read-email',
   'user-read-recently-played',
   'user-top-read',
-  'playlist-modify-public'
+  'playlist-modify-public',
+  'user-library-modify'
 ]
 
 const spotifyApi = new SpotifyWebApi({
@@ -155,32 +156,43 @@ app.get('/recommendations/p', (req, res) => {
   .catch(error => console.log(error))
 })
 
+
+app.listen(8888)
+
+
+
 // *******************************************************
 
-app.get('/createplaylist', (req, res) => {
-  spotifyApi.createPlaylist('Discoverfy', {
-    'description': 'test',
-    'public': true
-  }).then(data => {
-    console.log('created playlist')
-    res.redirect('/addtoplaylist')
-  }).catch(error => console.log(error))
-})
+// app.get('/createplaylist', (req, res) => {
+//   const uris = req.query.uris
+//   spotifyApi.createPlaylist('Discoverfy', {
+//     'description': 'test',
+//     'public': true
+//   }).then(data => {
+//     const id =  data.body.id
+//     res.redirect(`/addtoplaylist/?id=${id}&uris=${uris}`)
+//   }).catch(error => console.log(error))
+// })
 
-app.get('/addtoplaylist', (req, res) => {
-  spotifyApi.addTracksToPlaylist('playlist id', 'list of uris')
-  .then(data => {
-    console.log("tracks added to playlist")
-    res.render('pages/recommendations')
-  }).catch(error => console.log(error))
-})
+// app.get('/addtoplaylist', (req, res) => {
+//   const playlistId = req.query.id
+//   // const uris = req.query.uris
+//   spotifyApi.addTracksToPlaylist(playlistId, uris)
+//   .then(data => {
+//     res.render('pages/')
+//   }).catch(error => console.log(error))
+// })
 
 // ********************************************************
 
-// TODO use artists id for recommendations
-// TODO getTrack
-// TODO get album art
-// TODO createPlaylist
-// TODO addTracksToPlaylist
+// app.get('/savetrack', (req, res) => {
+//   const id = req.query.id
+//   console.log(id)
+//   spotifyApi.addToMySavedTracks([id])
+//   .then((data) => {
+//     res.render('pages/')
+//   }).catch(error => console.log(error))
+// })
 
-app.listen(8888)
+// ********************************************************
+
