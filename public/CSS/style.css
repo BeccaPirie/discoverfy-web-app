@@ -218,7 +218,6 @@ button:not(#login-btn):active {
     padding: 9px 12px 9px 12px;
     color: white;
     background-image: linear-gradient(#e05e5e, #f3a245);
-    margin-top: 5px;
     font-size: 16px;
 }
 
