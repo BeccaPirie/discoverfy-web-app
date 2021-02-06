@@ -2,8 +2,8 @@
     <% songs.forEach(song => { %>
     <div class="song-list-item">
         <div class="song-details">
-            <p class="song-title" id="top-tracks-title"><%= song.name %></p>
-            <p class="artists-name" id="top-tracks-artists"><%= song.artists %></p>
+            <p class="song-title"><%= song.name %></p>
+            <p class="artists-name"><%= song.artists %></p>
         </div>    
         <div class="btn-right">
             <a href="/recommendations/p?id=<%= song.id %>&name=<%= song.name %>"><button class="recommendations-btn">Find new music</button></a>

@@ -7,7 +7,6 @@ const scopes = [
   'user-read-email',
   'user-read-recently-played',
   'user-top-read',
-  'playlist-modify-public',
   'user-library-modify'
 ]
 
@@ -21,18 +20,21 @@ app.use(express.static('public'))
 
 app.set('view engine', 'ejs')
 
+
+// render index page
 app.get('/', (req, res) => {
   res.render('pages/index')
 })
 
+// allow user to sign in to Spotify
 app.get('/login', (req, res) => {
     res.redirect(spotifyApi.createAuthorizeURL(scopes))
 })
 
+// get auth token when user signs in
 app.get('/callback', (req, res) => {
     const error = req.query.error;
     const code = req.query.code;
-    const state = req.query.state;
     
     if (error) {
         console.error('Callback Error:', error);
@@ -68,7 +70,9 @@ app.get('/callback', (req, res) => {
       })
 })
 
+// get users recently played tracks and render recenttracks page
 app.get('/recenttracks', (req, res) => {
+  const token = req.query.token
   spotifyApi.getMyRecentlyPlayedTracks({
   limit: 50
   }).then(data => {
@@ -88,12 +92,14 @@ app.get('/recenttracks', (req, res) => {
       })
     })
     res.render('pages/recent-tracks', {
-      songs: songs
+      songs: songs,
+      token: token
     })
   })
   .catch (error => console.log(error))
 })
 
+// get users top tracks for time_range specified in parameter and render toptracks page
 app.get('/toptracks/p', (req, res) => {
   const timeRange = req.query.time_range
   spotifyApi.getMyTopTracks({
@@ -122,6 +128,7 @@ app.get('/toptracks/p', (req, res) => {
   .catch(error => console.log(error))
 })
 
+// get recommendations for selected track and render recommendations page
 app.get('/recommendations/p', (req, res) => {
   const songId = req.query.id
   const songName = req.query.name

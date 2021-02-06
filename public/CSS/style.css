@@ -97,7 +97,6 @@ a {
 
 .songs {
     width: 100%;
-    height: fit-content;
     margin: 0 auto;
     animation-name: fade-in;
     animation-duration: 1s;
@@ -116,16 +115,17 @@ a {
 #recommendations-title {
     width: fit-content;
     float: left;
+    margin-right: 20px;
 }
 
-#buttons {
+#time-range-buttons {
     margin-left: 15px;
     margin-bottom: 15px;
     height: fit-content;
     width: fit-content;
 }
 
-.btn {
+.time-btn {
     padding: 10px;
     border-radius: 5px;
     border: 2px solid #d41444;
@@ -134,23 +134,6 @@ a {
     font-weight: 600;
     margin-left: 3px;
 }
-
-#button {
-    display: flex;
-    justify-content: flex-end;
-    margin-right: 20px;
-    padding: 40px 0;
-}
-
-/* #create-playlist {
-    padding: 10px;
-    border-radius: 5px;
-    border: 2px solid #d41444;
-    background-color: white;
-    color: #d41444;
-    font-weight: 600;
-    margin-top: 4px;
-} */
 
 button:hover {
     cursor: pointer;
@@ -161,8 +144,6 @@ button:not(#login-btn):active {
 }
 
 .list {
-    height: fit-content;
-    padding-bottom: 15px;
     box-shadow: 10px 10px 60px 20px #f1f1f1;
     clear: both;
 }
@@ -170,7 +151,6 @@ button:not(#login-btn):active {
 .song-list-item {
     padding: 20px;
     clear: both;
-    padding-bottom: 20px;
 }
 
 .recommend-item:hover {
@@ -183,13 +163,6 @@ button:not(#login-btn):active {
     float: left;
 }
 
-.album-img {
-    margin-right: 10px;
-    float: left;
-    width: 65px;
-    height: 65px;
-}
-
 .song-title {
     margin: 0px;
     margin-bottom: -15px;
@@ -198,7 +171,6 @@ button:not(#login-btn):active {
 .btn-right {
     display: flex;
     justify-content: flex-end;
-    margin-top: 3px;
 }
 
 .recommendations-btn {
@@ -246,10 +218,6 @@ button:not(#login-btn):active {
     .list-title {
         width: 360px;
     }
-
-    /* #recommendations-title {
-        width: 350px;
-    } */
 }
 
 @media (min-width: 550px) {
@@ -288,30 +256,14 @@ button:not(#login-btn):active {
         box-shadow: 10px 10px 30px 20px #f1f1f1;
     }
 
-    #buttons {
+    #time-range-buttons {
         display: flex;
         justify-content: flex-end;
         padding-top: 25px;
     }
 
-    /* #recommendations-title {
-        width: 400px;
-    } */
-
-    #button {
-        padding: 20px 0;
-    }
-
-    .list {
-        padding-bottom: 25px;
-    }
-
     .song-details {
         width: 500px;
-    }
-
-    .btn-right {
-        margin-top: 7px;
     }
 
     .recommendations-btn {
@@ -331,8 +283,4 @@ button:not(#login-btn):active {
     .list-title {
         width: 560px;
     }
-
-    /* #recommendations-title {
-        width: 600px;
-    } */
 }
