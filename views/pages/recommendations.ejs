@@ -18,7 +18,7 @@
         </div>
         <div class="list">
             <% songs.forEach(song => { %>
-            <div class="song-list-item recommend-item">
+            <div class="song-list-item recommend-item" data-uri="<%= song.uri %>">
                 <div class="song-details">
                     <p class="song-title" id="recommendation-track-title"><%= song.name %></p>
                     <p class="artists-name" id="recommendation-artists"><%= song.artists %></p>
