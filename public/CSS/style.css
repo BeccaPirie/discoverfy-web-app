@@ -25,16 +25,18 @@ body {
 
 #description {
     color: white;
+    text-align: center;
+    margin: auto;
 }
 
 .center-btn {
     width: fit-content;
     margin: auto;
-    margin-top: 30px;
+    margin-top: 5vh;
 }
 
 #login-btn {
-    width: 300px;
+    width: 250px;
     padding: 20px;
     border-radius: 30px;
     border: none;
@@ -44,7 +46,7 @@ body {
     color: #4b4b4b;
 }
 
-#main-title, #login-btn {
+#main-title, #description, #login-btn {
     animation-name: fade-in;
     animation-duration: 1.5s;
     animation-fill-mode: forwards;
