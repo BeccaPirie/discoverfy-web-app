@@ -11,8 +11,8 @@ const scopes = [
 
 const spotifyApi = new SpotifyWebApi({
     redirectUri: 'https://discoverfy-app.herokuapp.com/callback',
-    clientId: '1d72037226ee42ecb9d96acb33beb4f5',
-    clientSecret: 'fffc78eb81cc440cb93b9c1bcf06c149'
+    clientId: 'CLIENTID',
+    clientSecret: 'CLIENTSECRET'
 })
 
 app.use(express.static('public'))
