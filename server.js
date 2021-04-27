@@ -7,7 +7,6 @@ const scopes = [
   'user-read-email',
   'user-read-recently-played',
   'user-top-read',
-  'user-library-modify'
 ]
 
 const spotifyApi = new SpotifyWebApi({
@@ -164,4 +163,4 @@ app.get('/recommendations/p', (req, res) => {
 })
 
 
-app.listen(8888)
+app.listen(process.env.PORT || 8888)
