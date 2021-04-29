@@ -27,6 +27,7 @@ body {
     color: white;
     text-align: center;
     margin: auto;
+    width: 300px;
 }
 
 .center-btn {
@@ -250,6 +251,10 @@ button:not(#login-btn):active {
     
     .hide {
         display: flex;
+    }
+
+    #description {
+        width: fit-content;
     }
 
     .songs {
