@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express()
 const SpotifyWebApi = require('spotify-web-api-node')
+const dotenv = require('dotenv')
+
+dotenv.config()
 
 const scopes = [
   'user-read-private',
@@ -10,9 +13,9 @@ const scopes = [
 ]
 
 const spotifyApi = new SpotifyWebApi({
-    redirectUri: 'https://discoverfy-app.herokuapp.com/callback',
-    clientId: '1d72037226ee42ecb9d96acb33beb4f5',
-    clientSecret: 'fffc78eb81cc440cb93b9c1bcf06c149'
+    redirectUri: process.env.REDIRECT_URI,
+    clientId: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET
 })
 
 app.use(express.static('public'))
